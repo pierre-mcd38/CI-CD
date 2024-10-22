@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Currency Converter</title>
+    <title>Convertisseur de Devises</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,46 +28,49 @@
             color: white;
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         button:hover {
             background-color: #0056b3;
         }
         .result {
             margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Currency Converter</h2>
+        <h2>Convertisseur de Devises</h2>
         <form action="/convert" method="POST">
-            <label for="amount">Amount to Convert:</label>
-            <input type="number" id="amount" name="amount" required>
+            <label for="amount">Montant à Convertir :</label>
+            <input type="number" id="amount" name="amount" required step="0.01" min="0">
 
-            <label for="from_currency">From Currency:</label>
+            <label for="from_currency">Devise d'origine :</label>
             <select id="from_currency" name="from_currency" required>
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="GBP">GBP</option>
-                <option value="JPY">JPY</option>
-                <!-- Ajoute plus de devises ici -->
+                <option value="USD">Dollar Américain (USD)</option>
+                <option value="EUR">Euro (EUR)</option>
+                <option value="GBP">Livre Sterling (GBP)</option>
+                <option value="JPY">Yen Japonais (JPY)</option>
+                <!-- Ajoutez plus de devises ici si nécessaire -->
             </select>
 
-            <label for="to_currency">To Currency:</label>
+            <label for="to_currency">Devise de destination :</label>
             <select id="to_currency" name="to_currency" required>
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <option value="GBP">GBP</option>
-                <option value="JPY">JPY</option>
-                <!-- Ajoute plus de devises ici -->
+                <option value="EUR">Euro (EUR)</option>
+                <option value="USD">Dollar Américain (USD)</option>
+                <option value="GBP">Livre Sterling (GBP)</option>
+                <option value="JPY">Yen Japonais (JPY)</option>
+                <!-- Ajoutez plus de devises ici si nécessaire -->
             </select>
 
-            <button type="submit">Convert</button>
+            <button type="submit">Convertir</button>
         </form>
 
         <% if (result) { %>
         <div class="result">
-            <h3>Converted Amount: <%= result %></h3>
+            Montant Converti : <strong><%= result %> <%= to_currency %></strong>
         </div>
         <% } %>
     </div>
