@@ -1,3 +1,4 @@
+// server.js
 const express = require('express');
 const axios = require('axios');
 const app = express();
@@ -21,32 +22,31 @@ app.post('/convert', async (req, res) => {
     const { amount, from_currency, to_currency } = req.body;
 
     try {
-        // Appeler l'API pour obtenir les taux de conversion
         const response = await axios.get(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${from_currency}`);
-        
-        // Vérifier si l'API a renvoyé les taux de conversion
+
         if (response.data && response.data.conversion_rates) {
             const rate = response.data.conversion_rates[to_currency];
 
-            // Vérifier que le taux existe avant de faire la conversion
             if (rate) {
-                // Calculer le montant converti
                 const result = (amount * rate).toFixed(2);
-                // Rendre la vue avec le résultat
-                return res.render('index', { result, to_currency });
+                return res.render('index', { result, from_currency, to_currency, amount });
             } else {
-                return res.render('index', { result: 'Erreur : Devise non disponible.', to_currency });
+                return res.render('index', { result: 'Erreur : Devise non disponible.', from_currency, to_currency, amount });
             }
         } else {
-            return res.render('index', { result: 'Erreur : Réponse API invalide.', to_currency });
+            return res.render('index', { result: 'Erreur : Réponse API invalide.', from_currency, to_currency, amount });
         }
     } catch (error) {
         console.error(error);
-        return res.render('index', { result: 'Erreur lors de la conversion des devises.', to_currency });
+        return res.render('index', { result: 'Erreur lors de la conversion des devises.', from_currency, to_currency, amount });
     }
 });
 
 // Démarrer le serveur
-app.listen(3000, () => {
-    console.log('Serveur démarré sur le port 3000');
+const PORT = process.env.PORT || 3000;
+const server = app.listen(PORT, () => {
+    console.log(`Serveur démarré sur le port ${PORT}`);
 });
+
+// Exporter l'application pour les tests
+module.exports = server;

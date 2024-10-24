@@ -24,7 +24,7 @@
             margin: 10px 0;
         }
         button {
-            background-color: #007bff;
+            background-color: #0076f5;
             color: white;
             border: none;
             cursor: pointer;
@@ -70,7 +70,9 @@
 
         <% if (result) { %>
         <div class="result">
-            Montant Converti : <strong><%= result %> <%= to_currency %></strong>
+            <h3>
+                <%= amount %> <%= from_currency %> = <strong><%= result %> <%= to_currency %></strong>
+            </h3>
         </div>
         <% } %>
     </div>
