@@ -22,7 +22,7 @@ app.post('/convert', async (req, res) => {
     const { amount, from_currency, to_currency } = req.body;
 
     try {
-        const response = await axios.get(`https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${from_currency}`);
+        const response = await axios.get(`htps://v6.exchangerate-api.com/v6/${API_KEY}/latest/${from_currency}`);
 
         if (response.data && response.data.conversion_rates) {
             const rate = response.data.conversion_rates[to_currency];
