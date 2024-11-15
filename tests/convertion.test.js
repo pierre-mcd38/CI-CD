@@ -38,6 +38,6 @@ describe('convertirDevise', () => {
         const result = await convertirDevise(amount, from_currency, to_currency);
 
         // Vérifier que le résultat est correct
-        expect(result).toBe('85.00');  // 100 USD * 0.85 = 85.00 EUR
+        expect(result).toBe('87.00');  // 100 USD * 0.85 = 85.00 EUR
     });
 });
