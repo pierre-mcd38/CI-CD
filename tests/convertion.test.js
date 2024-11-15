@@ -20,6 +20,10 @@ async function convertirDevise(amount, from_currency, to_currency) {
 
 // Test unitaire
 describe('convertirDevise', () => {
+    afterAll(() => {
+        jest.clearAllMocks(); // Nettoyer les mocks après les tests
+    });
+
     it('devrait correctement convertir une devise', async () => {
         // Simuler une réponse API avec un taux de conversion fictif
         axios.get.mockResolvedValueOnce({
